@@ -3,8 +3,8 @@ import { Button, Modal, Paragraph } from '@contentful/forma-36-react-components'
 import { useEffect, useState } from 'react';
 //@ts-ignore
 import Commerce from '@chec/commerce.js';
-import { Product } from '../types/product';
-import ProductCard from './custom_components/ProductCard';
+import { Product } from '../CommerceJS/types/product';
+import ProductCard from '../CommerceJS/ProductCard';
 
 interface FieldProps {
 	sdk: FieldExtensionSDK;

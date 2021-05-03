@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { AppExtensionSDK } from '@contentful/app-sdk';
-import AppConfiguration from './custom_components/AppConfiguration';
+import AppConfiguration from './AppConfiguration';
 
 export interface AppInstallationParameters {}
 

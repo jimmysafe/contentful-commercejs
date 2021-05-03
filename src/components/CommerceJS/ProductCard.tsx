@@ -1,6 +1,6 @@
 import { Card, Flex, Typography, Paragraph, Button } from '@contentful/forma-36-react-components';
 import { FC } from 'react';
-import { Product } from '../../types/product';
+import { Product } from './types/product';
 
 interface ProductCardProps {
 	product: Product;
