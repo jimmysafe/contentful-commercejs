@@ -29,7 +29,7 @@ const ProductCard: FC<ProductCardProps> = ({ product, deleteFunction, onClick })
 					</Typography>
 				</Flex>
 				{deleteFunction && (
-					<Flex>
+					<Flex alignSelf='center'>
 						<Button buttonType='negative' onClick={deleteFunction}>
 							X
 						</Button>

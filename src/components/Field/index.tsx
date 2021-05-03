@@ -1,5 +1,5 @@
 import { FieldExtensionSDK } from '@contentful/app-sdk';
-import { Button, Modal, Paragraph } from '@contentful/forma-36-react-components';
+import { Button, Flex, Modal, Paragraph, Spinner } from '@contentful/forma-36-react-components';
 import { useEffect, useState } from 'react';
 //@ts-ignore
 import Commerce from '@chec/commerce.js';
@@ -20,6 +20,7 @@ const Field = ({ sdk }: FieldProps) => {
 	const [isShown, setShown] = useState<boolean>(false);
 	const [products, setProducts] = useState<any[]>([]);
 	const [addedProducts, setAddedProducts] = useState<Product[]>(currentValue);
+	const [loading, setLoading] = useState<boolean>(false);
 
 	useEffect(() => sdk.window.updateHeight(500), []);
 
@@ -28,8 +29,18 @@ const Field = ({ sdk }: FieldProps) => {
 		if (isShown) {
 			(async () => {
 				try {
+					setLoading(true);
 					const { data } = await commerce.products.list();
-					setProducts(data);
+					const existingProductIds: string[] = currentValue.map((prod: Product) => prod.id);
+					const availableProducts: Product[] = data
+						.map((item: Product) => {
+							if (existingProductIds.includes(item.id)) return null;
+							return item;
+						})
+						.filter((item: Product) => item !== null);
+
+					setProducts(availableProducts);
+					setLoading(false);
 				} catch (err) {
 					console.log(err);
 				}
@@ -74,15 +85,21 @@ const Field = ({ sdk }: FieldProps) => {
 			<Modal title='Centered modal' isShown={isShown} onClose={() => console.log('closed')}>
 				{() => (
 					<>
-						<Modal.Header title='Title' />
+						<Modal.Header title='Products' />
 						<Modal.Content>
-							{products.map((product: Product) => (
-								<ProductCard
-									key={product.id}
-									product={product}
-									onClick={() => addProduct(product)}
-								/>
-							))}
+							{loading ? (
+								<Flex justifyContent='center' alignItems='center' padding='spacingXl'>
+									<Spinner />
+								</Flex>
+							) : (
+								products.map((product: Product) => (
+									<ProductCard
+										key={product.id}
+										product={product}
+										onClick={() => addProduct(product)}
+									/>
+								))
+							)}
 						</Modal.Content>
 						<Modal.Controls>
 							<Button buttonType='muted' onClick={() => setShown(false)}>
