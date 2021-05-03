@@ -20,10 +20,10 @@ Once installed go and **configure the app** and add your CommerceJS Public API k
 
 Create A content model on the Contentful Api
 
-![enter image description here](https://user-images.githubusercontent.com/12184812/116871901-48c39500-ac15-11eb-9509-f84556bf7dc0.gif)
+![enter image description here](https://user-images.githubusercontent.com/12184812/116872692-9db3db00-ac16-11eb-96e4-d9403ac0ec03.gif)
 
 Then go and use the created Content Model!
 
-![enter image description here](https://user-images.githubusercontent.com/12184812/116872009-76a8d980-ac15-11eb-8e5b-3e907dceb6ba.gif)
+![enter image description here](https://user-images.githubusercontent.com/12184812/116872756-bfad5d80-ac16-11eb-960e-497f6238d3cb.gif)
 
 This will fetch all products in your CommerceJS store. ( will change in the next version of the project )
